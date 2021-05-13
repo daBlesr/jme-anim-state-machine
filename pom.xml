@@ -21,12 +21,6 @@
             <artifactId>jme3-core</artifactId>
             <version>${jme3_v}</version>
         </dependency>
-        <dependency>
-            <groupId>org.jmonkeyengine</groupId>
-            <artifactId>jme3-core</artifactId>
-            <version>3.3.2-stable</version>
-            <scope>compile</scope>
-        </dependency>
     </dependencies>
 
 </project>
