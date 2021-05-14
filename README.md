@@ -32,3 +32,10 @@ Creat links between states, and specify when the state should move to the next s
 Link idleToRunning = animStateMachine.addLink(idleBaseState, runningState);
 idleToRunning.when(() -> getForwardVelocity.get() >= 0.01f);
 ```
+
+## Link Delayed Condition 
+You can set a conditional link between two actions on the end of the former action.
+```
+OnFinishedEventAction onFinishSomeAction = new OnFinishedEventAction(animComposer.getAnimClip("SomeAction"));
+doSomethingElse.when(new DelayedConsumer(onFinishSomeAction));
+```
