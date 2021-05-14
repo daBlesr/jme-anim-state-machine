@@ -1,6 +1,7 @@
 package AnimStateMachine;
 
 import com.jme3.anim.AnimComposer;
+import com.jme3.anim.tween.action.Action;
 import com.jme3.anim.tween.action.BlendableAction;
 import com.jme3.renderer.RenderManager;
 import com.jme3.renderer.ViewPort;
@@ -16,7 +17,6 @@ public class AnimStateMachine extends AbstractControl {
     private List<ActionState> states = new ArrayList<>();
     private Map<String, ActionState> defaultStates = new HashMap<>();
     private Map<String, ActionState> currentStates = new HashMap<>();
-    private boolean hasChangedState = false;
     private boolean initialized = false;
 
     /**
@@ -36,7 +36,7 @@ public class AnimStateMachine extends AbstractControl {
     /**
      * Add state to State Machine on default Layer
      */
-    public ActionState addState (String name, BlendableAction action) {
+    public ActionState addState (String name, Action action) {
         return addState(name, AnimComposer.DEFAULT_LAYER, action);
     }
 
@@ -44,7 +44,7 @@ public class AnimStateMachine extends AbstractControl {
      * Add state to State Machine on specified layer.
      * State name must be unique.
      */
-    public ActionState addState (String name, String layer, BlendableAction action) {
+    public ActionState addState (String name, String layer, Action action) {
         ActionState state = new ActionState(name, layer, action);
         AnimComposer animComposer = getAnimComposer();
         animComposer.addAction(name, action);
@@ -87,7 +87,7 @@ public class AnimStateMachine extends AbstractControl {
             String layer = actionStateEntry.getKey();
             ActionState oldState = actionStateEntry.getValue();
             ActionState currentState = oldState.next();
-            hasChangedState = oldState != currentState;
+            boolean hasChangedState = oldState != currentState;
 
             if (hasChangedState) {
                 currentStates.put(layer, currentState);

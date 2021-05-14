@@ -1,5 +1,6 @@
 package AnimStateMachine;
 
+import com.jme3.anim.tween.action.Action;
 import com.jme3.anim.tween.action.BlendableAction;
 
 import java.util.ArrayList;
@@ -8,18 +9,18 @@ import java.util.Optional;
 
 public class ActionState {
 
-    private BlendableAction action;
+    private Action action;
     private String name;
     private String layer;
     private List<Link> links = new ArrayList<>();
 
-    public ActionState(String name, String layer, BlendableAction action) {
+    public ActionState(String name, String layer, Action action) {
         this.name = name;
         this.layer = layer;
         this.action = action;
     }
 
-    public BlendableAction getBlendableAction() {
+    public Action getAction() {
         return action;
     }
 
